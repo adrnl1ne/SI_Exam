@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Webhook Integrator</title>
+  <link rel="icon" href="data:image/x-icon;base64,AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP+UABD/lABg/5QAUP+UAEX/lAAx/5QAIf+UABcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/5QAmP+UAP//lAD//5QA//+UAP//lADw/5QAyP+UAJj/lABWAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/5QA1v+UAN3/lACI/5QAd/+UAJj/lACo/5QAw/+UANb/lACz/5QAUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP+UABD/lAC9/5QAz/+UAEL/lAAB/5QAAP+UAAD/lAAL/5QALv+UAPz/lAD//5QAwv+UABEAAAAAAAAAAAAAAAAAAAAA/5QAf/+UAPH/lABb/5QAAAAAAAAAAAAAAAAAAAD/lAAA/5QAVv+UAOT/lACzAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/5QAcf+UAOX/lABV/5QAAAAAAAAAAAAAAAAAAP+UAAD/lABQ/5QA2v+UAFEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//8AAP//AAD//wAA//8AAP//AAD//wAA/x8AAP4PAAD8AwAA/AcAAP//AAD//wAA//8AAP//AAD//wAA//8AAA==" type="image/x-icon">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    .container {
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+    button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 14px;
+      margin-right: 10px;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+    button:disabled {
+      background-color: #cccccc;
+      cursor: not-allowed;
+    }
+    .status {
+      margin-top: 10px;
+      padding: 10px;
+      border-radius: 4px;
+    }
+    .success {
+      background-color: #dff0d8;
+      color: #3c763d;
+    }
+    .error {
+      background-color: #f2dede;
+      color: #a94442;
+    }
+    pre {
+      background-color: #f5f5f5;
+      padding: 10px;
+      border-radius: 4px;
+      overflow-x: auto;
+    }
+    .hidden {
+      display: none;
+    }
+    h3 {
+      margin-top: 0;
+    }
+    .webhook-card {
+      margin-bottom: 10px;
+      padding: 10px;
+      background-color: #f9f9f9;
+      border-radius: 4px;
+      border-left: 4px solid #4CAF50;
+    }
+  </style>
+</head>
+<body>
+  <h1>Webhook Integrator</h1>
+  
+  <div class="container">
+    <h2>Configuration</h2>
+    <p>Webhook Server: <a id="webhookServerUrl" href="https://8636-91-101-72-250.ngrok-free.app" target="_blank">https://8636-91-101-72-250.ngrok-free.app</a></p>
+    <p>Public URL (for webhook reception): <span id="publicUrl">https://12aintegrator.vercel.app/webhook</span></p>
+  </div>
+  
+  <div class="container">
+    <h2>Register Webhook</h2>
+    <p>Register your webhook with the webhook server:</p>
+    <button id="registerBtn">Register Webhook</button>
+    <div id="registerStatus" class="hidden"></div>
+    
+    <div id="webhookInfo" class="hidden">
+      <h3>Webhook Details</h3>
+      <pre id="webhookDetails"></pre>
+    </div>
+  </div>
+  
+  <div class="container">
+    <h2>Send Ping</h2>
+    <p>Send a ping to test all registered webhooks:</p>
+    <button id="pingBtn">Send Ping</button>
+    <div id="pingStatus" class="hidden"></div>
+  </div>
+  
+  <div class="container">
+    <h2>Received Webhooks</h2>
+    <button id="clearBtn">Clear All</button>
+    <p id="noWebhooks">No webhooks received yet.</p>
+    <div id="receivedWebhooks"></div>
+  </div>
+  
+  <!-- Include config and app scripts -->
+  <script src="/js/config.js"></script>
+  <script src="/js/app.js"></script>
+</body>
+</html>

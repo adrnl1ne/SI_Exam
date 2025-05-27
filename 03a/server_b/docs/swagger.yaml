@@ -1,0 +1,102 @@
+basePath: /
+host: localhost:3000
+info:
+  contact: {}
+  description: This is a data parsing server implemented in Go (Server B). It can
+    parse data files directly or forward requests to Server A.
+  title: Data Parsing Server (Server B - Go)
+  version: "1.0"
+paths:
+  /:
+    get:
+      description: Returns a welcome message with available sets and file types
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Welcome message
+          schema:
+            additionalProperties: true
+            type: object
+      summary: Get welcome message
+      tags:
+      - General
+  /parse/{set_name}:
+    get:
+      description: Parses a file for a given set and file type, or all files for a
+        set. If direct=true, parses directly; otherwise, forwards to Server A.
+      parameters:
+      - description: Set name (e.g., books, movies)
+        in: path
+        name: set_name
+        required: true
+        type: string
+      - description: 'Whether to parse directly (default: false)'
+        in: query
+        name: direct
+        type: boolean
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Parsed data
+          schema:
+            additionalProperties: true
+            type: object
+        "400":
+          description: Invalid set name or file type
+          schema:
+            type: string
+        "404":
+          description: File not found
+          schema:
+            type: string
+        "500":
+          description: Internal server error
+          schema:
+            type: string
+      summary: Parse a specific file or all files for a set
+      tags:
+      - Parsing
+  /parse/{set_name}/{file_type}:
+    get:
+      description: Parses a file for a given set and file type, or all files for a
+        set. If direct=true, parses directly; otherwise, forwards to Server A.
+      parameters:
+      - description: Set name (e.g., books, movies)
+        in: path
+        name: set_name
+        required: true
+        type: string
+      - description: File type (e.g., txt, xml, yaml, json, csv)
+        in: path
+        name: file_type
+        type: string
+      - description: 'Whether to parse directly (default: false)'
+        in: query
+        name: direct
+        type: boolean
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Parsed data
+          schema:
+            additionalProperties: true
+            type: object
+        "400":
+          description: Invalid set name or file type
+          schema:
+            type: string
+        "404":
+          description: File not found
+          schema:
+            type: string
+        "500":
+          description: Internal server error
+          schema:
+            type: string
+      summary: Parse a specific file or all files for a set
+      tags:
+      - Parsing
+swagger: "2.0"
