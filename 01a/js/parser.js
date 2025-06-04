@@ -10,12 +10,7 @@ const BASE_DIR = path.resolve(__dirname, '..', '..'); // Move up two directories
 async function parseText(filePath) {
     const content = await fs.readFile(filePath, 'utf8');
     const data = {};
-    for (const line of content.split('\n')) {
-        if (line.includes(': ')) {
-            const [key, value] = line.split(': ', 2);
-            data[key.trim()] = value.trim();
-        }
-    }
+    data ['content'] = content.split('\n').map(line => line.trim());
     return data;
 }
 

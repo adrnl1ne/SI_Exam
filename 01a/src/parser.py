@@ -11,12 +11,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent.parent  # Adjusted to point to
 
 def parse_text(file_path: Path) -> Dict[str, str]:
     """Parse a text file into a dictionary."""
-    data = {}
+    data = {} 
     with open(file_path, 'r') as file:
-        for line in file:
-            if ': ' in line:
-                key, value = line.strip().split(': ', 1)
-                data[key] = value
+        data ['content'] = file.read().splitlines()
     return data
 
 def parse_xml(file_path: Path) -> Dict[str, str]:
